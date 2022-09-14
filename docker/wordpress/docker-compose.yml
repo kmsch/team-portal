@@ -31,6 +31,7 @@ services:
 
   # Wordpress
   wordpress:
+    build: . 
     depends_on:
       - mysql
     image: wordpress:latest
@@ -43,13 +44,12 @@ services:
       WORDPRESS_DB_USER: root
       WORDPRESS_DB_PASSWORD: root
 
-  
   mailhog:
     image: mailhog/mailhog:latest
     restart: always
     ports:
-      - 18025:8025
-      - 11025:1025
+      - 18025:8025 # web ui
+      - 11025:1025 # smtp server
 
 volumes:
   db_data:
